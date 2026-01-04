@@ -17,16 +17,16 @@ if st.button("Add Task"):
 st.subheader("Your Tasks")
 
 for i, task in enumerate(st.session_state.tasks):
-    col1, col2, col3 = st.columns([6, 1, 1])
+    col1, col2 = st.columns([8, 1])
 
-    col1.write(
-        "✅ " + task["title"] if task["done"] else "🔲 " + task["title"]
+    # Checkbox auto-ticks and stores state
+    task["done"] = col1.checkbox(
+        task["title"],
+        value=task["done"],
+        key=f"task_{i}"
     )
 
-    if col2.button("✔", key=f"done_{i}"):
-        task["done"] = not task["done"]
-
-    if col3.button("🗑️", key=f"delete_{i}"):
+    if col2.button("🗑️", key=f"delete_{i}"):
         st.session_state.tasks.pop(i)
         st.rerun()
 
