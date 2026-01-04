@@ -28,7 +28,7 @@ for i, task in enumerate(st.session_state.tasks):
 
     if col3.button("🗑️", key=f"delete_{i}"):
         st.session_state.tasks.pop(i)
-        st.experimental_rerun()
+        st.rerun()
 
 st.header("⏱️ Pomodoro Timer")
 st.write("Timer coming here")
