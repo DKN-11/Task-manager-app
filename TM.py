@@ -19,9 +19,13 @@ st.subheader("Your Tasks")
 for i, task in enumerate(st.session_state.tasks):
     col1, col2 = st.columns([8, 1])
 
-    # Checkbox auto-ticks and stores state
+    # Apply strikethrough if completed
+    title = task["title"]
+    if task["done"]:
+        title = f"~~{title}~~"
+
     task["done"] = col1.checkbox(
-        task["title"],
+        title,
         value=task["done"],
         key=f"task_{i}"
     )
